@@ -1,1 +1,11 @@
 /* Empty. Add your own CSS if you like */
+/* Agregado para el Google Maps */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.scroll {
+  height: 100%;
+}
+/* Fin Agregado para Google Maps */
