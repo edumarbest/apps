@@ -35,8 +35,23 @@ angular.module('starter.controllers', [])
   };
 })
 
-    .controller('MapCtrl', function($scope, $ionicLoading, $compile) {
-      function initialize() {
+    //.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
+    .controller('MapCtrl', function($scope) {
+        
+        //google.maps.event.AddDomListener(window,"load", function(){
+            var Latlng = new google.maps.LatLng(37.3000,-120.4833);
+            var mapOptions = {
+                center : Latlng,
+                zoom : 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            
+            var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+            
+            $scope.map = map;
+        //});
+        
+      /*function initialize() {
         var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
         
         var mapOptions = {
@@ -89,7 +104,7 @@ angular.module('starter.controllers', [])
       
       $scope.clickTest = function() {
         alert('Example of infowindow with ng-click')
-      };
+      };*/
       
     });
 
