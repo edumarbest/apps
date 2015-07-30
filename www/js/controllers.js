@@ -35,76 +35,29 @@ angular.module('starter.controllers', [])
   };
 })
 
-    //.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
-    .controller('MapCtrl', function($scope) {
-        
-        //google.maps.event.AddDomListener(window,"load", function(){
-            var Latlng = new google.maps.LatLng(37.3000,-120.4833);
-            var mapOptions = {
-                center : Latlng,
-                zoom : 16,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            
-            var map = new google.maps.Map(document.getElementById("map"),mapOptions);
-            
-            $scope.map = map;
-        //});
-        
-      /*function initialize() {
-        var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
-        
+.controller('MapController', function($scope, $ionicLoading) {
+ 
+    google.maps.event.addDomListener(window, 'load', function() {
+        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+ 
         var mapOptions = {
-          center: myLatlng,
-          zoom: 16,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+            center: myLatlng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
-        
-        //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-        var compiled = $compile(contentString)($scope);
-
-        var infowindow = new google.maps.InfoWindow({
-          content: compiled[0]
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'Uluru (Ayers Rock)'
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
-
-        $scope.map = map;
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-      
-      $scope.centerOnMe = function() {
-        if(!$scope.map) {
-          return;
-        }
-
-        $scope.loading = $ionicLoading.show({
-          content: 'Getting current location...',
-          showBackdrop: false
-        });
-
+ 
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+ 
         navigator.geolocation.getCurrentPosition(function(pos) {
-          $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-          $scope.loading.hide();
-        }, function(error) {
-          alert('Unable to get location: ' + error.message);
+            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            var myLocation = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                map: map,
+                title: "My Location"
+            });
         });
-      };
-      
-      $scope.clickTest = function() {
-        alert('Example of infowindow with ng-click')
-      };*/
-      
+ 
+        $scope.map = map;
     });
-
+ 
+});
